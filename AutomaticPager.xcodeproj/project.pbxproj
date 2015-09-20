@@ -14,6 +14,9 @@
 		050B96ED1BAEF89500E4BA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050B96EB1BAEF89500E4BA81 /* LaunchScreen.storyboard */; };
 		050B96F81BAEF89500E4BA81 /* AutomaticPagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B96F71BAEF89500E4BA81 /* AutomaticPagerTests.swift */; };
 		050B97031BAEF89500E4BA81 /* AutomaticPagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B97021BAEF89500E4BA81 /* AutomaticPagerUITests.swift */; };
+		050B97131BAEF8E500E4BA81 /* PagerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B97121BAEF8E500E4BA81 /* PagerClass.swift */; };
+		050B97151BAEF99F00E4BA81 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B97141BAEF99F00E4BA81 /* CollectionViewCell.swift */; };
+		050B97171BAEF9F100E4BA81 /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B97161BAEF9F100E4BA81 /* Lorem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,10 @@
 		050B96FE1BAEF89500E4BA81 /* AutomaticPagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutomaticPagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		050B97021BAEF89500E4BA81 /* AutomaticPagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticPagerUITests.swift; sourceTree = "<group>"; };
 		050B97041BAEF89500E4BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050B97101BAEF8A600E4BA81 /* PagesAsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesAsExtension.swift; sourceTree = "<group>"; };
+		050B97121BAEF8E500E4BA81 /* PagerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerClass.swift; sourceTree = "<group>"; };
+		050B97141BAEF99F00E4BA81 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		050B97161BAEF9F100E4BA81 /* Lorem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +110,10 @@
 				050B96E91BAEF89500E4BA81 /* Assets.xcassets */,
 				050B96EB1BAEF89500E4BA81 /* LaunchScreen.storyboard */,
 				050B96EE1BAEF89500E4BA81 /* Info.plist */,
+				050B97101BAEF8A600E4BA81 /* PagesAsExtension.swift */,
+				050B97121BAEF8E500E4BA81 /* PagerClass.swift */,
+				050B97141BAEF99F00E4BA81 /* CollectionViewCell.swift */,
+				050B97161BAEF9F100E4BA81 /* Lorem.swift */,
 			);
 			path = AutomaticPager;
 			sourceTree = "<group>";
@@ -256,7 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				050B96E51BAEF89500E4BA81 /* ViewController.swift in Sources */,
+				050B97171BAEF9F100E4BA81 /* Lorem.swift in Sources */,
 				050B96E31BAEF89500E4BA81 /* AppDelegate.swift in Sources */,
+				050B97151BAEF99F00E4BA81 /* CollectionViewCell.swift in Sources */,
+				050B97131BAEF8E500E4BA81 /* PagerClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -386,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -399,6 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AutomaticPager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.menke-dev.AutomaticPager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,6 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AutomaticPager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.menke-dev.AutomaticPager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +499,7 @@
 				050B97091BAEF89500E4BA81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		050B970A1BAEF89500E4BA81 /* Build configuration list for PBXNativeTarget "AutomaticPagerTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +508,7 @@
 				050B970C1BAEF89500E4BA81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		050B970D1BAEF89500E4BA81 /* Build configuration list for PBXNativeTarget "AutomaticPagerUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +517,7 @@
 				050B970F1BAEF89500E4BA81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
