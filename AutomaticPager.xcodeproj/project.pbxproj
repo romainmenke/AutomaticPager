@@ -56,7 +56,6 @@
 		050B96FE1BAEF89500E4BA81 /* AutomaticPagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutomaticPagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		050B97021BAEF89500E4BA81 /* AutomaticPagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticPagerUITests.swift; sourceTree = "<group>"; };
 		050B97041BAEF89500E4BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		050B97101BAEF8A600E4BA81 /* PagesAsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesAsExtension.swift; sourceTree = "<group>"; };
 		050B97121BAEF8E500E4BA81 /* Pager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pager.swift; sourceTree = "<group>"; };
 		050B97141BAEF99F00E4BA81 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		050B97161BAEF9F100E4BA81 /* Lorem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
@@ -128,7 +127,6 @@
 				050B96E91BAEF89500E4BA81 /* Assets.xcassets */,
 				050B96EB1BAEF89500E4BA81 /* LaunchScreen.storyboard */,
 				050B96EE1BAEF89500E4BA81 /* Info.plist */,
-				050B97101BAEF8A600E4BA81 /* PagesAsExtension.swift */,
 				050B97141BAEF99F00E4BA81 /* CollectionViewCell.swift */,
 				050B97161BAEF9F100E4BA81 /* Lorem.swift */,
 			);
