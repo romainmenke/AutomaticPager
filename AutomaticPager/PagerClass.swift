@@ -12,20 +12,23 @@ import UIKit
 
 class Pager : UITextView  {
     
-    var pages : [String] = []
-    var chapters : [[String]] = []
+    // PUBLIC
     
-    private var sentences : [[String]] = []
+    var pages : [String] = [] // text as pages
+    var chapters : [[String]] = [] // text as pages with chapters
+    var delimiters = [".","?",",","!",":",";"] // default punctuation to use for splitting text into sentences
     
-    var delimiters = [".","?",",","!",":",";"]
-    var delimiterCount : Int {
+    
+    // PRIVATE
+    
+    private var delimiterCount : Int { // went overboard with declarations
         get {
             return delimiters.count
         }
     }
     
-    var boxedContainer : NSTextContainer
-    var boxedLayout : NSLayoutManager
+    private var boxedContainer : NSTextContainer // constrained text container
+    private var boxedLayout : NSLayoutManager // constrained text layout
     
     init(frame: CGRect) {
         
@@ -42,6 +45,8 @@ class Pager : UITextView  {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     func setPagesFromTextInChapters(chapters:[String]) {
         
         self.chapters = getPagesFromTextInChapters(chapters)
@@ -56,41 +61,11 @@ class Pager : UITextView  {
         
     }
     
-    
-    private func getPagesFromTextInChapters(chapters:[String]) -> [[String]] {
-        
-        var chaptersInPages : [[String]] = []
-        
-        for i in 0..<chapters.count {
-            chaptersInPages.append(getPagesFromText(chapters[i]))
-        }
-        
-        return chaptersInPages
-        
-    }
-    
-    private func getPagesFromText(string:String) -> [String] {
-        
-        text = string // set text
-        
-        var pages : [String] = []
-        
-        repeat {
-            let seperatedString = seperateStringBasedOnVisibility()
-            
-            var visibleString = seperatedString.visibleString
-            
-            if (visibleString as NSString).substringToIndex(2) == "\r" {
-                visibleString = (visibleString as NSString).substringFromIndex(2)
-            }
-            
-            pages.append(seperatedString.visibleString)
-            text = seperatedString.outOfBoundsString
-        } while text.characters.count != 0
-        
-        return pages
-    }
-    
+}
+
+// FINDING PAGES
+
+extension Pager {
     
     private func getPageWithString(searchString : String) -> (chapter:Int,page:Int)? {
         
@@ -119,18 +94,6 @@ class Pager : UITextView  {
         return nil
     }
     
-    private func getReadRangeOfPage(searchString:String, page:Int, chapter:Int) -> NSRange { // untested
-        
-        let pageString = chapters[chapter][page] as NSString
-        
-        let range = pageString.rangeOfString(searchString)
-        let rangeEnd = range.length + range.location
-        let extendedRange = NSRange(location: 0, length: rangeEnd)
-        
-        return extendedRange
-        
-    }
-    
     private func stringIsOnPage(searchString : String, page: String) -> Bool {
         
         if page.containsString(searchString) {
@@ -143,35 +106,24 @@ class Pager : UITextView  {
         
     }
     
-    private func rangeOfVisibleString() -> NSRange {
+    private func getReadRangeOfPage(searchString:String, page:Int, chapter:Int) -> NSRange { // untested
         
-        return boxedLayout.glyphRangeForTextContainer(boxedContainer)
+        let pageString = chapters[chapter][page] as NSString
+        
+        let range = pageString.rangeOfString(searchString)
+        let rangeEnd = range.length + range.location
+        let extendedRange = NSRange(location: 0, length: rangeEnd)
+        
+        return extendedRange
         
     }
     
-    private func visibleText() -> String {
-        
-        let nsString = text as NSString
-        
-        let visibleText = nsString.substringWithRange(rangeOfVisibleString())
-        
-        return String(visibleText)
-    }
-    
-    private func seperateStringBasedOnVisibility() -> (visibleString:String,outOfBoundsString:String) {
-        
-        let visibleString = visibleText()
-        
-        var outOfBoundsString = text
-        
-        let rangeToRemove = outOfBoundsString.rangeOfString(visibleString)
-        outOfBoundsString.removeRange(rangeToRemove!)
-        
-        return (visibleString,outOfBoundsString)
-    }
-    
-    
-    // CONVERT TEXT TO ARRAY OF SENTENCES
+}
+
+
+// CONVER FULL TEXT TO ARRAY BASED ON PUNCTUATION
+
+extension Pager {
     
     func splitString(string: String, delimiter : String) -> [String] {
         
@@ -228,7 +180,78 @@ class Pager : UITextView  {
         }
         
         return stringArray
+    }
+}
+
+// SPLIT IN PAGES
+
+extension Pager {
+    
+    private func getPagesFromTextInChapters(chapters:[String]) -> [[String]] {
         
+        var chaptersInPages : [[String]] = []
+        
+        for i in 0..<chapters.count {
+            chaptersInPages.append(getPagesFromText(chapters[i]))
+        }
+        
+        return chaptersInPages
+        
+    }
+    
+    private func getPagesFromText(string:String) -> [String] {
+        
+        text = string // set text
+        
+        var pages : [String] = []
+        
+        repeat {
+            let seperatedString = seperateStringBasedOnVisibility()
+            
+            var visibleString = seperatedString.visibleString
+            
+            if (visibleString as NSString).substringToIndex(2) == "\r" {
+                visibleString = (visibleString as NSString).substringFromIndex(2)
+            }
+            
+            pages.append(seperatedString.visibleString)
+            text = seperatedString.outOfBoundsString
+        } while text.characters.count != 0
+        
+        return pages
+    }
+    
+}
+
+// DETERMINE WHICH TEXT IS VISIBLE
+
+extension Pager {
+    
+    private func rangeOfVisibleString() -> NSRange {
+        
+        return boxedLayout.glyphRangeForTextContainer(boxedContainer)
+        
+    }
+    
+    private func visibleText() -> String {
+        
+        let nsString = text as NSString
+        
+        let visibleText = nsString.substringWithRange(rangeOfVisibleString())
+        
+        return String(visibleText)
+    }
+    
+    private func seperateStringBasedOnVisibility() -> (visibleString:String,outOfBoundsString:String) {
+        
+        let visibleString = visibleText()
+        
+        var outOfBoundsString = text
+        
+        let rangeToRemove = outOfBoundsString.rangeOfString(visibleString)
+        outOfBoundsString.removeRange(rangeToRemove!)
+        
+        return (visibleString,outOfBoundsString)
     }
     
 }
