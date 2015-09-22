@@ -12,8 +12,8 @@ import UIKit
 
 protocol PageFinder {
     
-    var pages : [String] { get }
-    var chapters : [[String]] { get }
+    var pages : [[String]] { get }
+    var chapters : [[[String]]] { get }
     
 }
 
@@ -33,7 +33,7 @@ extension PageFinder {
         return nil
     }
     
-    func getPageInChapterWithString(searchString: String, chapter: [String]) -> Int? {
+    func getPageInChapterWithString(searchStrings: [String], chapter: [[String]]) -> Int? {
         
         for pageID in 0..<chapter.count {
             

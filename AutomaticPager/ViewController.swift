@@ -27,7 +27,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         pageManager = Pager(frame: frame)
         pageManager.font = font
-        pageManager.setPagesFromText(lorem)
+        pageManager.setPagesFromText(chapters: [lorem])
         
     }
     

@@ -19,6 +19,20 @@ protocol SentenceBuilder {
 
 extension SentenceBuilder {
     
+    func splitChaptersIntoSentences(chapters: [String]) -> [[String]] {
+        
+        var chaptersInSentences : [[String]] = []
+        
+        for i in 0..<chapters.count {
+            
+            chaptersInSentences.append(splitStringIntoSentences(chapters[i]))
+            
+        }
+        
+        return chaptersInSentences
+        
+    }
+    
     func splitStringIntoSentences(string: String) -> [String] {
         
         var stringArray : [String] = [string]
