@@ -10,6 +10,12 @@ import Foundation
 
 import UIKit
 
+// REMINDER :
+//    String => Sentence
+//   [String] => Page
+//  [[String]] => Chapter
+// [[[String]]] => Document
+
 class Pager : UITextView {
     
     // PUBLIC
@@ -49,23 +55,18 @@ class Pager : UITextView {
 
 extension Pager {
     
-    func setPagesFromText(chapters chapters_I:[String], breakInSentences:Bool) {
+    func setPagesFromText(chapters chapters_I:[String]) {
         
-        if breakInSentences {
-            let chaptersInSenteces = splitChaptersIntoSentences(chapters_I)
-            chapters = getPagesFromTextInChapters(chaptersInSentences: chaptersInSenteces)
-            pages = chapters.flatMap { $0 }
-        } else {
-            chapters = [getPagesFromTextInChapters(chapters: chapters_I)]
-            pages = chapters.flatMap { $0 }
-        }
+        let chaptersInSenteces = splitChaptersIntoSentences(chapters_I)
+        chapters = getPagesFromTextInChapters(chapters: chaptersInSenteces)
+        pages = chapters.flatMap { $0 }
         
     }
 
     
     func setPagesFromText(chaptersInSentences chapters_I:[[String]]) {
         
-        chapters = getPagesFromTextInChapters(chaptersInSentences: chapters_I)
+        chapters = getPagesFromTextInChapters(chapters: chapters_I)
         pages = chapters.flatMap { $0 }
         
     }
@@ -78,75 +79,39 @@ extension Pager {
 
 
 extension Pager {
+
     
-    private func getPagesFromTextInChapters(chapters chapters_I:[String]) -> [[String]] {
-        
-        var chaptersInPages : [[String]] = []
-        
-        for i in 0..<chapters.count {
-            chaptersInPages.append(getPagesFromText(string: chapters_I[i]))
-        }
-        
-        return chaptersInPages
-        
-    }
-    
-    private func getPagesFromTextInChapters(chaptersInSentences chapters_I:[[String]]) -> [[[String]]] {
+    private func getPagesFromTextInChapters(chapters chapters_I:[[String]]) -> [[[String]]] {
         
         var chaptersInPages : [[[String]]] = []
         
         for i in 0..<chapters_I.count {
-            chaptersInPages.append(getPagesFromText(stringInSentences: chapters_I[i]))
+            chaptersInPages.append(getPagesFromText(pages: chapters_I[i]))
         }
         
         return chaptersInPages
         
     }
     
-    private func getPagesFromText(string string_I:String) -> [String] {
+    private func getPagesFromText(pages string_I:[String]) -> [[String]] {
         
-        text = string_I // set text
+        var tempString = string_I
         
-        var pages : [String] = []
-        
-        repeat {
-            let seperatedString = seperateStringBasedOnVisibility()
-            
-            var visibleString = seperatedString.visibleString
-            
-            if (visibleString as NSString).substringToIndex(2) == "\r" {
-                visibleString = (visibleString as NSString).substringFromIndex(2)
-            }
-            
-            pages.append(seperatedString.visibleString)
-            text = seperatedString.outOfBoundsString
-        } while text.characters.count != 0
-        
-        return pages
-    }
-    
-    private func getPagesFromText(stringInSentences string_I:[String]) -> [[String]] {
-        
-        var sentences = string_I
-        text = sentences.reduce("") { $0 + $1 } // set text
+        text = string_I.reduce("") { $0 + $1 } // set text
         
         var pages : [[String]] = []
         
         repeat {
-            let seperatedString = seperateStringBasedOnVisibility()
-            
+            let seperatedString = seperateStringBasedOnVisibility(tempString)
+            tempString = seperatedString.outOfBoundsString
             var visibleString = seperatedString.visibleString
             
-            // make sure the page doesn't start with a return
-            while (visibleString as NSString).substringToIndex(2) == "\r" {
-                visibleString = (visibleString as NSString).substringFromIndex(2)
+            if (visibleString[0] as NSString).substringToIndex(2) == "\r" {
+                visibleString[0] = (visibleString[0] as NSString).substringFromIndex(2)
             }
             
-            let visibleSentences = buildPageSentences(visibleText: visibleString, fullText: sentences)
-            sentences = Array(sentences[visibleSentences.count...(sentences.count - 1)])
-            
-            pages.append(sentences)
-            text = seperatedString.outOfBoundsString
+            pages.append(seperatedString.visibleString)
+            text = seperatedString.outOfBoundsString.reduce("") { $0 + $1 }
         } while text.characters.count != 0
         
         return pages
@@ -174,6 +139,6 @@ extension Pager {
 
 // ADD PAGER TRAITS
 
-extension Pager: PageFinder, SentenceBuilder, VisibleText {
+extension Pager: SentenceBuilder, VisibleText {
     
 }

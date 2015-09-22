@@ -84,6 +84,7 @@ extension SentenceBuilder {
             
         }
         
+        splitStrings = splitStrings.filter { $0 != "" }
         
         return splitStrings
     }

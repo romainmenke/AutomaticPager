@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0507CCFA1BB066D800D660D2 /* PageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507CCF91BB066D800D660D2 /* PageFinder.swift */; };
 		0507CCFC1BB0670C00D660D2 /* SentenceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507CCFB1BB0670C00D660D2 /* SentenceBuilder.swift */; };
 		0507CCFE1BB06D0F00D660D2 /* VisibileText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507CCFD1BB06D0F00D660D2 /* VisibileText.swift */; };
 		050B96E31BAEF89500E4BA81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050B96E21BAEF89500E4BA81 /* AppDelegate.swift */; };
@@ -284,7 +283,6 @@
 				050B96E51BAEF89500E4BA81 /* ViewController.swift in Sources */,
 				0507CCFE1BB06D0F00D660D2 /* VisibileText.swift in Sources */,
 				050B97171BAEF9F100E4BA81 /* Lorem.swift in Sources */,
-				0507CCFA1BB066D800D660D2 /* PageFinder.swift in Sources */,
 				0507CCFC1BB0670C00D660D2 /* SentenceBuilder.swift in Sources */,
 				050B96E31BAEF89500E4BA81 /* AppDelegate.swift in Sources */,
 				050B97151BAEF99F00E4BA81 /* CollectionViewCell.swift in Sources */,

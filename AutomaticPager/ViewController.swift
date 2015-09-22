@@ -92,7 +92,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
         
         cell.textView.font = font
-        cell.textView.text = pageManager.chapters[indexPath.section][indexPath.row]
+        cell.textView.text = pageManager.chapters[indexPath.section][indexPath.row].reduce("") { $0 + $1 }
         
         return cell
     }
