@@ -48,4 +48,35 @@ extension VisibleText {
         return (visibleString,outOfBoundsString)
     }
     
+    func seperateStringBasedOnVisibility(array:[String]) -> (visibleString:[String],outOfBoundsString:[String]) {
+        
+        let currentVisibleText = visibleText()
+        
+        let startIndex : Int = 0
+        var endIndex : Int = 0
+        
+        var unShownText = array
+        var currentTextArray = array
+        
+        while currentVisibleText.containsString(array[endIndex]) {
+            
+            if endIndex == (array.count - 1) {
+                break
+            }
+            endIndex += 1
+            
+        }
+        
+        if endIndex == (array.count - 1) {
+            return (array,[])
+        } else {
+            currentTextArray.removeRange(Range(start: (endIndex + 1), end: (array.count)))
+            
+            unShownText.removeRange(Range(start: startIndex, end: endIndex))
+            
+            return (currentTextArray,unShownText)
+        }
+    }
+
+    
 }
